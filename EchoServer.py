@@ -19,6 +19,8 @@
 # Personal notes:
 # 1. To grab the URL dynamically: self.path
 
+# Option 1: Using BaseHTTPRequestHandler to parse the URL
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class EchoHandler(BaseHTTPRequestHandler):
