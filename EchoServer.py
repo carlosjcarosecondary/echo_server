@@ -19,19 +19,30 @@
 # Personal notes:
 # 1. To grab the URL dynamically: self.path
 
+# Option B: to use the urllib.parse to identify the path
+
 from http.server import HTTPServer, BaseHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
 
 class EchoHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
+        #print(self.client_address)
+
         # First, send a 200 OK response.
         self.send_response(200)
+        print(self.path)
+        aa = urlparse(self.path)
+        print(aa)
+        bb = parse_qs(aa.query)
+        print(bb)
 
         # Then send headers.
         self.send_header('Content-type', 'text/plain; charset=utf-8')
         self.end_headers()
 
         # Now, write the response body.
+       
         self.wfile.write(self.path[1:].encode())
 
 if __name__ == '__main__':
